@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>justLEARN</title>
+    <style type="text/css" scoped>
+        .money {
+            background-color: green;
+            width: 100%;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .blue-theme {
+            color: red;
+            background: purple;
+        }
+        .border {
+            border: 12px red solid;
+            height: 200px;
+            width: 400px;
+        }
+        .shadow {
+            box-shadow: 4px 5px 5px pink;
+        }
+        .red {
+            background-color: red;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <h1 class="money">We can revisit this many times if only it is pushed to your repository</h1>
+    
+    <div id="app">
+        {{ hello }} {{ age }} is {{ num }}
+        <p v-if="lal" :class="red">everything here will be displayed in red</p>
+        <button v-on:click="num = num + 1">click to see</button>
+        <button @click="loud">decrease</button>
+        <button @click="displaytoggle">toggle condition</button>
+
+        <ul>
+            <li v-for="add in courses" :key="add">{{ add }}</li>
+        </ul>
+
+        <ul>
+            <li v-for="one in schools" :key="one.name">
+                {{ one.population }} ---- {{ one.name }} ------ {{ one.principal }}
+            </li>
+        </ul>
+
+        <a v-bind:href="go">facebook</a>
+        <a :href="go1">instagram</a>
+        <a v-bind:href="go">twitter</a>
+
+        <div class="description" :class="{shadow:value3}">
+            This is how you add static classes in Vue.
+        <div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    hello: 'vue can be used as a standalone widget here',
+                    age: 'the new age is',
+                    num: 1,
+                    value3: true,
+                    ll: 'money',
+                    lal: 'shadow',
+                    red: 'red',  // This should refer to the class name directly
+                    theme: 'blue-theme',
+                    go1: 'https://instagram.com',
+                    go: 'https://www.facebook.com', // Added 'https://' to make it a valid link
+                    courses: ['TOE', 'XUP', 'TTE', 'MSN', 'LCK'],
+                    schools: [
+                        { name: 'Sanyaolu Wards Duide', population: '220', principal: 'Mr. Xan' },
+                        { name: 'MEMories High School', population: '1880', principal: 'Mr. Agbham' },
+                        { name: 'Oyes College', population: '20', principal: 'Com. Dante' },
+                        { name: 'Choplife Bar', population: '500', principal: 'Mohammed' }
+                    ]
+                };
+            },
+            methods: {
+                loud() {
+                    alert('The code looks good');
+                    this.num = this.num - 1;
+                },
+                displaytoggle() {
+                    this.lal = !this.lal;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
